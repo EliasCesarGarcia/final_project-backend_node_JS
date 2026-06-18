@@ -1,37 +1,39 @@
-1. Archivo de Datos (La Base de Datos)
-ARCHIVO: products.json
-UBICACIÓN: data/products.json
-QUÉ HACE: Es nuestro archivo de texto donde se guardarán los productos de forma permanente.
-ORIGEN/AFECTA: Lo lee y escribe el Modelo.
+# 🚀 API REST - Gestión de Productos (TechLab)
+### Proyecto Final - Programa Talento Tech
+**Estudiante:** Elias Garcia  
+**Tecnologías:** Node.js, Express, Firebase Firestore, Firebase Auth.
 
-2. Capa de Modelo (El Bibliotecario)
-ARCHIVO: product.model.js
-UBICACIÓN: src/models/product.model.js
-QUÉ HACE: Es el único que toca el archivo products.json. Sabe leerlo y escribir en él usando el módulo fs (FileSystem).
-IMPLEMENTACIÓN: El Servicio lo llama para obtener o guardar datos.
+---
 
-3. Capa de Servicio (El Organizador)
-ARCHIVO: product.service.js
-UBICACIÓN: src/services/product.service.js
-QUÉ HACE: Recibe órdenes del controlador y le pide al modelo los datos. Aquí iría la "lógica de negocio" (ej. descuentos).
-IMPLEMENTACIÓN: Viene del Controlador y afecta al Modelo.
+## 📝 Descripción
+Esta es una API REST profesional diseñada para la gestión de un catálogo de productos. Permite realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) de forma segura mediante una arquitectura por capas y protección de rutas con autenticación basada en Firebase.
 
-4. Capa de Controlador (El Recepcionista)
-ARCHIVO: product.controller.js
-UBICACIÓN: src/controllers/product.controller.js
-QUÉ HACE: Recibe la petición del usuario (req), llama al servicio y envía la respuesta (res).
-IMPLEMENTACIÓN: Viene de las Rutas y llama al Servicio.
+El proyecto ha sido optimizado siguiendo el feedback docente, implementando validaciones robustas en la capa de servicios y un manejo de errores estandarizado.
 
-5. Archivo de Rutas (El Mapa)
-ARCHIVO: product.routes.js
-UBICACIÓN: src/routes/product.routes.js
-QUÉ HACE: Define las URLs que el usuario puede visitar.
+## ✨ Características
+- **Arquitectura de Software:** Separación de responsabilidades en 5 capas (Rutas, Controladores, Servicios, Modelos y Datos).
+- **Seguridad:** Rutas protegidas que requieren un Bearer Token válido.
+- **Base de Datos:** Persistencia en la nube mediante Google Firebase Firestore.
+- **Validaciones:** Control estricto de tipos de datos (ej. validación de precio numérico y campos obligatorios).
+- **Despliegue:** Configurado para producción en Vercel.
 
-6. Archivo Principal (El Motor)
-ARCHIVO: index.js
-UBICACIÓN: Raíz del proyecto.
-QUÉ HACE: Arranca el servidor Express.
+## 🛠️ Tecnologías utilizadas
+- **Node.js** (Entorno de ejecución)
+- **Express** (Framework de servidor)
+- **Firebase Admin/Auth** (Persistencia y Seguridad)
+- **Dotenv** (Gestión de variables de entorno)
+- **Cors** (Intercambio de recursos de origen cruzado)
 
-7. Configuración del Proyecto
-ARCHIVO: package.json
-UBICACIÓN: Raíz del proyecto.
+## 📂 Estructura del Proyecto
+- `src/data`: Conexión oficial a Firebase.
+- `src/models`: Consultas directas a la base de datos (Firestore).
+- `src/services`: Lógica de negocio y validaciones de datos (Feedback del profesor).
+- `src/controllers`: Gestión de respuestas HTTP y códigos de estado.
+- `src/routes`: Definición de endpoints de la API.
+- `src/middlewares`: Filtros de seguridad para proteger rutas.
+
+## 🚀 Instalación y Ejecución
+1. Clonar el repositorio.
+2. Instalar dependencias: `npm install`
+3. Configurar el archivo `.env` con las credenciales de Firebase.
+4. Iniciar servidor: `npm start`
