@@ -2,9 +2,9 @@
   "name": "final_project-backend_node_js-garcia_elias",
   "version": "1.0.0",
   "type": "module",
-  "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -12,5 +12,9 @@
     "express": "^4.19.2",
     "firebase": "^10.12.2",
     "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "jest": "^30.4.2",
+    "supertest": "^7.2.2"
   }
 }
