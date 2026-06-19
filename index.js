@@ -18,6 +18,10 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json()); // Reemplaza a body-parser
 
+app.get('/', (req, res) => {
+    res.send('API funcionando correctamente ✅');
+});
+
 // Rutas de la API
 app.use('/api/products', productRoutes);
 app.use('/api/auth', authRoutes);
