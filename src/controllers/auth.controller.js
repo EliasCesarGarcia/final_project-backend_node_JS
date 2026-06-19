@@ -11,6 +11,13 @@ export const register = async (req, res) => {
         const user = await authService.register(email, password);
         res.status(201).json({ message: 'Usuario creado con éxito', uid: user.uid });
     } catch (error) {
+        // MENSAJE ESPECÍFICO SI EL USUARIO YA EXISTE
+        if (error.code === 'auth/email-already-in-use') {
+            return res.status(409).json({ message: 'Ese correo ya está registrado. Intenta con otro o inicia sesión.' });
+        }
+        if (error.code === 'auth/weak-password') {
+            return res.status(400).json({ message: 'La contraseña es muy corta. Debe tener al menos 6 caracteres.' });
+        }
         res.status(400).json({ message: 'Error al registrar', error: error.message });
     }
 };

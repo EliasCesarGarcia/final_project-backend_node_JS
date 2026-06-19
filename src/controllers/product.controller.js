@@ -16,10 +16,14 @@ export const getProducts = async (req, res) => {
     }
 };
 
+// BUSCAR POR ID
 export const getProduct = async (req, res) => {
     try {
         const data = await productService.getById(req.params.id);
-        data ? res.status(200).json(data) : res.status(404).json({ message: "No encontrado" });
+        if (!data) {
+            return res.status(404).json({ message: "El producto solicitado no existe o fue eliminado." });
+        }
+        res.status(200).json(data);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -35,19 +39,26 @@ export const createProduct = async (req, res) => {
     }
 };
 
+// ACTUALIZAR
 export const updateProduct = async (req, res) => {
     try {
         const data = await productService.updateProduct(req.params.id, req.body);
-        res.status(200).json(data);
+        res.status(200).json({ message: "Producto actualizado correctamente", data });
     } catch (err) {
-        res.status(400).json({ message: err.message });
+        // Si el servicio lanza error porque no lo encontró
+        res.status(404).json({ message: err.message });
     }
 };
 
+// ELIMINAR
 export const deleteProduct = async (req, res) => {
     try {
+        const exist = await productService.getById(req.params.id);
+        if (!exist) {
+            return res.status(404).json({ message: "No se puede eliminar: el producto no existe." });
+        }
         await productService.deleteProduct(req.params.id);
-        res.status(200).json({ message: "Eliminado con éxito" });
+        res.status(200).json({ message: "Producto eliminado definitivamente." });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
